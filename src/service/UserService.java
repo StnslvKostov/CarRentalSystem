@@ -30,7 +30,7 @@ public class UserService {
         return users;
     }
 
-    public void signUp() {
+    public User signUp() {
         String id = UUID.randomUUID().toString();
 
         System.out.println("Insert username:");
@@ -42,6 +42,7 @@ public class UserService {
         User user = new User(id, username, password, CUSTOMER);
         System.out.printf("Customer profile with ID: %s has been created.\n", id);
         users.add(user);
+        return user;
     }
 
     public User signIn() {

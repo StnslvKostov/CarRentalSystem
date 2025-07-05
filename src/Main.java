@@ -3,10 +3,11 @@ import model.User;
 import service.CarService;
 import service.UserService;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
-import static utils.Constants.LINE_SEPARATOR;
+import static utils.Constants.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +17,26 @@ public class Main {
         List<Car> cars = carService.getAll();
         List<User> users = userService.getAll();
 
+        displayStartMenu();
+
+        User currentUser = logIn(scanner, userService);
+
+        switch (currentUser.getRole()) {
+            case ADMIN ->{
+                handleAdminRole(scanner, carService);
+            }
+            case CUSTOMER ->{
+
+            }
+        }
+
+
+        carService.saveAll();
+        userService.saveAll();
+
+    }
+
+    private static void handleAdminRole(Scanner scanner, CarService carService) {
         displayAdminMenu();
 
         String action = scanner.nextLine();
@@ -32,10 +53,28 @@ public class Main {
             displayAdminMenu();
             action = scanner.nextLine();
         }
+    }
 
-        carService.saveAll();
-        userService.saveAll();
+    private static User logIn(Scanner scanner, UserService userService) {
+        String action = scanner.nextLine();
 
+        switch (action) {
+            case "1" -> {
+                return userService.signUp();
+            }
+            case "2" -> {
+                return userService.signIn();
+            }
+            case "0" -> System.exit(0);
+        }
+        return null;
+    }
+
+    private static void displayStartMenu() {
+        System.out.println("Welcome to CarRental.");
+        System.out.println("1.Sign up");
+        System.out.println("2.Sign in");
+        System.out.println("0.Exit");
     }
 
     public static void displayAdminMenu() {
