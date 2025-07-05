@@ -1,6 +1,8 @@
 import model.Car;
+import model.Rental;
 import model.User;
 import service.CarService;
+import service.RentalService;
 import service.UserService;
 
 import java.sql.SQLOutput;
@@ -15,8 +17,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CarService carService = new CarService();
         UserService userService = new UserService();
+        RentalService rentalService = new RentalService(carService);
         List<Car> cars = carService.getAll();
         List<User> users = userService.getAll();
+        List<Rental> rentals = rentalService.getAll();
 
         displayStartMenu();
 
@@ -32,7 +36,7 @@ public class Main {
                 while(!action.equals("0")){
                     switch (action){
                         case "1" ->{
-                            //TODO
+                            rentalService.rent(currentUser.getId());
                         }
                         case "2" ->{
                             //TODO
@@ -41,6 +45,7 @@ public class Main {
                             carService.search();
                         }
                     }
+                    displayCustomerMenu();
                     action = scanner.nextLine();
                 }
             }
@@ -49,7 +54,7 @@ public class Main {
 
         carService.saveAll();
         userService.saveAll();
-
+        rentalService.saveAll();
     }
 
     private static void handleAdminRole(Scanner scanner, CarService carService) {

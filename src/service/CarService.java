@@ -61,16 +61,16 @@ public class CarService {
         String id = UUID.randomUUID().toString();
         String availability = "Available";
 
-        System.out.println("Make:");
+        System.out.print("Make: ");
         String make = scanner.nextLine();
 
-        System.out.println("Model:");
+        System.out.print("Model: ");
         String model = scanner.nextLine();
 
-        System.out.println("Year:");
+        System.out.print("Year: ");
         String year = scanner.nextLine();
 
-        System.out.println("Type:");
+        System.out.print("Type: ");
         String type = scanner.nextLine();
 
         Car newCar = new Car(id, make, model, year, type, availability);
@@ -124,31 +124,31 @@ public class CarService {
             switch (action) {
                 case "1" -> {
                     System.out.println("Current make: " + car.getMake());
-                    System.out.println("New make:");
+                    System.out.print("New make: ");
                     String newMake = scanner.nextLine();
                     car.setMake(newMake);
                 }
                 case "2" -> {
                     System.out.println("Current model: " + car.getModel());
-                    System.out.println("New model:");
+                    System.out.print("New model: ");
                     String newModel = scanner.nextLine();
                     car.setModel(newModel);
                 }
                 case "3" -> {
                     System.out.println("Current year: " + car.getYear());
-                    System.out.println("New year:");
+                    System.out.print("New year: ");
                     String newYear = scanner.nextLine();
                     car.setYear(newYear);
                 }
                 case "4" -> {
                     System.out.println("Current type: " + car.getType());
-                    System.out.println("New type:");
+                    System.out.print("New type: ");
                     String newType = scanner.nextLine();
                     car.setType(newType);
                 }
                 case "5" -> {
                     System.out.println("Current availability: " + car.getAvailability());
-                    System.out.println("New availability:");
+                    System.out.print("New availability: ");
                     String newAvailability = scanner.nextLine();
                     car.setAvailability(newAvailability);
                 }
@@ -161,7 +161,7 @@ public class CarService {
 
     }
 
-    private Car handleGetCar(String id) {
+    public Car handleGetCar(String id) {
         Car car = null;
         while (car == null) {
             try {

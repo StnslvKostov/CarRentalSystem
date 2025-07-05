@@ -99,7 +99,7 @@ public class UserService {
     }
 
     private User handleGetUser() {
-        System.out.print("Username:");
+        System.out.print("Username: ");
         String username = scanner.nextLine();
         User user = null;
         while (user == null) {
@@ -107,7 +107,7 @@ public class UserService {
                 user = getByUsername(username);
             } catch (UserNotFoundException e) {
                 System.out.println(e.getMessage());
-                System.out.print("Username:");
+                System.out.print("Username: ");
                 username = scanner.nextLine();
             }
         }
@@ -115,7 +115,7 @@ public class UserService {
     }
 
     private void handlePassword(String userPassword) {
-        System.out.print("Password:");
+        System.out.print("Password: ");
         String password = scanner.nextLine();
 
         while (!password.equals(userPassword)) {
