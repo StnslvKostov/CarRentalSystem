@@ -53,7 +53,7 @@ public class CarService {
         String type = scanner.nextLine();
 
         Car newCar = new Car(id, make, model, year, type, availability);
-        System.out.printf("Car with ID: %s has been created.", id);
+        System.out.printf("Car with ID: %s has been created.\n", id);
         cars.add(newCar);
     }
 

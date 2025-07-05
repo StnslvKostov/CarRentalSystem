@@ -1,5 +1,7 @@
 import model.Car;
+import model.User;
 import service.CarService;
+import service.UserService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +12,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         CarService carService = new CarService();
+        UserService userService = new UserService();
         List<Car> cars = carService.getAll();
+        List<User> users = userService.getAll();
 
         displayAdminMenu();
 
@@ -30,6 +34,7 @@ public class Main {
         }
 
         carService.saveAll();
+        userService.saveAll();
 
     }
 
