@@ -33,10 +33,10 @@ public class UserService {
     public User signUp() {
         String id = UUID.randomUUID().toString();
 
-        System.out.println("Insert username:");
+        System.out.print("Username:");
         String username = scanner.nextLine();
 
-        System.out.println("Insert password:");
+        System.out.print("Password:");
         String password = scanner.nextLine();
 
         User user = new User(id, username, password, CUSTOMER);
@@ -56,7 +56,7 @@ public class UserService {
 
     public User getByUsername(String username) throws UserNotFoundException {
         for (User user : users) {
-            if (username.equals(user.getId())) {
+            if (username.equals(user.getUsername())) {
                 return user;
             }
         }
@@ -99,7 +99,7 @@ public class UserService {
     }
 
     private User handleGetUser() {
-        System.out.println("Username:");
+        System.out.print("Username:");
         String username = scanner.nextLine();
         User user = null;
         while (user == null) {
@@ -107,7 +107,7 @@ public class UserService {
                 user = getByUsername(username);
             } catch (UserNotFoundException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Insert new Username:");
+                System.out.print("Username:");
                 username = scanner.nextLine();
             }
         }
@@ -115,7 +115,7 @@ public class UserService {
     }
 
     private void handlePassword(String userPassword) {
-        System.out.println("Password:");
+        System.out.print("Password:");
         String password = scanner.nextLine();
 
         while (!password.equals(userPassword)) {

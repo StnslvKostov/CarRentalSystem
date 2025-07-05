@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static utils.Constants.CARS_CSV_PATH;
 import static utils.Constants.LINE_SEPARATOR;
@@ -34,6 +35,26 @@ public class CarService {
             }
         }
         throw new CarNotFoundException();
+    }
+
+    public void search(){
+        System.out.println("Leave blank to skip filter");
+        System.out.print("Make: ");
+        String make = scanner.nextLine().trim();
+        System.out.print("From Year: ");
+        String year = scanner.nextLine().trim();
+        List<Car> filteredCars = cars.stream()
+                .filter(car -> car.getAvailability().equals("Available"))
+                .toList();
+        if(!make.equals("")){
+            filteredCars = filteredCars.stream().filter(car -> car.getMake().equalsIgnoreCase(make)).toList();
+        }
+        if(!year.equals("")){
+            filteredCars = filteredCars.stream().filter(car -> Integer.parseInt(car.getYear()) >= Integer.parseInt(year)).toList();
+        }
+        for(Car car : filteredCars){
+            System.out.println(car);
+        }
     }
 
     public void add() {

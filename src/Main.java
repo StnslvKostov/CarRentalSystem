@@ -4,6 +4,7 @@ import service.CarService;
 import service.UserService;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +27,22 @@ public class Main {
                 handleAdminRole(scanner, carService);
             }
             case CUSTOMER ->{
-
+                displayCustomerMenu();
+                String action = scanner.nextLine();
+                while(!action.equals("0")){
+                    switch (action){
+                        case "1" ->{
+                            //TODO
+                        }
+                        case "2" ->{
+                            //TODO
+                        }
+                        case "3" ->{
+                            carService.search();
+                        }
+                    }
+                    action = scanner.nextLine();
+                }
             }
         }
 
@@ -84,6 +100,14 @@ public class Main {
         System.out.println("2.Edit");
         System.out.println("3.Remove");
         System.out.println("4.Show all");
+        System.out.println("0.Exit");
+    }
+    public static void displayCustomerMenu(){
+        System.out.println(LINE_SEPARATOR);
+        System.out.println("Customer car menu");
+        System.out.println("1.Rent");
+        System.out.println("2.Return");
+        System.out.println("3.Search");
         System.out.println("0.Exit");
     }
 }

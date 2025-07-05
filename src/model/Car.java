@@ -70,13 +70,14 @@ public class Car {
     @Override
     public String toString() {
         return String.format("""
+                %s
                 ID: %s
                 Make: %s
                 Model: %s
                 Year: %s
                 Type: %s
                 Availability: %s
-                %s""",id,make,model,year,type,availability,LINE_SEPARATOR);
+                """,LINE_SEPARATOR,id,make,model,year,type,availability);
 
 
     }
