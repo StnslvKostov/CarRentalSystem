@@ -4,7 +4,7 @@ Developed by Stanislav Kostov for Sirma Academy OOP exam
 
 ## Installation
 
-Close repository and run in IntelliJ
+Clone repository and run in IntelliJ
 
 ## Usage
 Follow application instructions when started.
