@@ -8,15 +8,13 @@ public class Car {
     private String model;
     private String year;
     private String type;
-    private String availability;
 
-    public Car(String id, String make, String model, String year, String type, String availability) {
+    public Car(String id, String make, String model, String year, String type) {
         this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
         this.type = type;
-        this.availability = availability;
     }
 
     public String getId() {
@@ -59,25 +57,15 @@ public class Car {
         this.type = type;
     }
 
-    public String getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     @Override
     public String toString() {
         return String.format("""
                 %s
-                ID: %s
                 Make: %s
                 Model: %s
                 Year: %s
                 Type: %s
-                Availability: %s
-                """,LINE_SEPARATOR,id,make,model,year,type,availability);
+                """,LINE_SEPARATOR,id,make,model,year,type);
 
 
     }

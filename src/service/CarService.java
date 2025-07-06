@@ -2,11 +2,13 @@ package service;
 
 import exception.CarNotFoundException;
 import model.Car;
+import utils.DateHelper;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,29 +39,10 @@ public class CarService {
         throw new CarNotFoundException();
     }
 
-    public void search(){
-        System.out.println("Leave blank to skip filter");
-        System.out.print("Make: ");
-        String make = scanner.nextLine().trim();
-        System.out.print("From Year: ");
-        String year = scanner.nextLine().trim();
-        List<Car> filteredCars = cars.stream()
-                .filter(car -> car.getAvailability().equals("Available"))
-                .toList();
-        if(!make.equals("")){
-            filteredCars = filteredCars.stream().filter(car -> car.getMake().equalsIgnoreCase(make)).toList();
-        }
-        if(!year.equals("")){
-            filteredCars = filteredCars.stream().filter(car -> Integer.parseInt(car.getYear()) >= Integer.parseInt(year)).toList();
-        }
-        for(Car car : filteredCars){
-            System.out.println(car);
-        }
-    }
+
 
     public void add() {
         String id = UUID.randomUUID().toString();
-        String availability = "Available";
 
         System.out.print("Make: ");
         String make = scanner.nextLine();
@@ -73,7 +56,7 @@ public class CarService {
         System.out.print("Type: ");
         String type = scanner.nextLine();
 
-        Car newCar = new Car(id, make, model, year, type, availability);
+        Car newCar = new Car(id, make, model, year, type);
         System.out.printf("Car with ID: %s has been created.\n", id);
         cars.add(newCar);
     }
@@ -88,7 +71,6 @@ public class CarService {
                         .append(car.getModel()).append(",")
                         .append(car.getYear()).append(",")
                         .append(car.getType()).append(",")
-                        .append(car.getAvailability()).append(",")
                         .append("\n");
             }
 
@@ -146,12 +128,6 @@ public class CarService {
                     String newType = scanner.nextLine();
                     car.setType(newType);
                 }
-                case "5" -> {
-                    System.out.println("Current availability: " + car.getAvailability());
-                    System.out.print("New availability: ");
-                    String newAvailability = scanner.nextLine();
-                    car.setAvailability(newAvailability);
-                }
 
             }
             System.out.println("Car has been edited.");
@@ -183,7 +159,6 @@ public class CarService {
         System.out.println("2.Model");
         System.out.println("3.Year");
         System.out.println("4.Type");
-        System.out.println("5.Availability");
         System.out.println("0.Back to main menu");
     }
 
@@ -199,8 +174,7 @@ public class CarService {
                 String model = fields[2];
                 String year = fields[3];
                 String type = fields[4];
-                String availability = fields[5];
-                cars.add(new Car(id, make, model, year, type, availability));
+                cars.add(new Car(id, make, model, year, type));
             }
         } catch (IOException e) {
             e.printStackTrace();

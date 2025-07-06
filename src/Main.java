@@ -39,10 +39,10 @@ public class Main {
                             rentalService.rent(currentUser.getId());
                         }
                         case "2" ->{
-                            //TODO
+                            rentalService.returnCar(currentUser);
                         }
                         case "3" ->{
-                            carService.search();
+                            rentalService.printFilter();
                         }
                     }
                     displayCustomerMenu();
