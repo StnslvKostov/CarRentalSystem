@@ -65,7 +65,7 @@ public class Car {
                 Model: %s
                 Year: %s
                 Type: %s
-                """,LINE_SEPARATOR,id,make,model,year,type);
+                """,LINE_SEPARATOR,make,model,year,type);
 
 
     }

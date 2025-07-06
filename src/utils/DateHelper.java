@@ -23,4 +23,13 @@ public class DateHelper {
         }
         return dateRequest;
     }
+
+    public static boolean isYearValid(String yearStr) {
+        try {
+            int year = Integer.parseInt(yearStr);
+            return year <= LocalDate.now().getYear() && year >= 1950;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
